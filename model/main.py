@@ -8,7 +8,7 @@ Save a pickle file to be used in Web App.
 import api
 import data_cleaning as dc
 import feature_engineering as fe
-import train as tfunc
+import train as tr
 
 # Importing the most recent data
 url = 'https://moneypuck.com/moneypuck/playerData/careers/gameByGame/all_teams.csv'
@@ -23,9 +23,9 @@ print("** The raw data has been successfully cleaned.")
 df = fe.fengine(cleanData)
 print("** Feature Engineering has been successfully completed.")
 
-"""
 # Training the Logistic Classifier and saving the Pickle file
-print("** Cleaning the data.")
 print("** Training the ML model")
-tfunc.nhl_clean(rawData)
-"""
+tr.model(df)
+
+# Display all steps complete
+print("** All processes complete.")
