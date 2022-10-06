@@ -5,7 +5,7 @@ Save a pickle file to be used in Web App.
 """
 
 # Import custom functions
-import api
+import model.api as api
 import data_cleaning as dc
 import feature_engineering as fe
 import train as tr
