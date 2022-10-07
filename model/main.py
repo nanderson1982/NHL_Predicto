@@ -24,7 +24,7 @@ df = fe.fengine(cleanData)
 print("** Feature Engineering has been successfully completed.")
 
 # Training the Logistic Classifier and saving the Pickle file
-print("** Training the ML model")
+print("** Training the ML model.")
 tr.model(df)
 
 # Display all steps complete
