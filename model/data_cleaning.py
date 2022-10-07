@@ -1,6 +1,9 @@
+from importlib.machinery import DEBUG_BYTECODE_SUFFIXES
+
+
 def clean(df):
 
-    # Replacing duplicate acronyms
+    # Replacing duplicate team name acronyms
     df['opposingTeam'].replace({'S.J': 'SJS'}, inplace = True)
     df['opposingTeam'].replace({'N.J': 'NJD'}, inplace = True)
     df['opposingTeam'].replace({'T.B': 'TBL'}, inplace = True)

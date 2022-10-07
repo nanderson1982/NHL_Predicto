@@ -1,5 +1,6 @@
 # Import libraries
 import numpy as np
+import pandas as pd
 from flask import Flask, request, render_template
 import pickle
 
@@ -8,6 +9,8 @@ app = Flask(__name__)
 
 # Load the trained model - Pickle File
 model = pickle.load(open('/Users/nathananderson/Desktop/NHL_Predictor/pickle/nhl.pkl', 'rb'))
+
+teams = pd.read_pickle('/Users/nathananderson/Desktop/NHL_Predictor/pickle/teams.pkl')
                         
 # Define the route to be home. 
 # The decorator below links the relative route of the URL to the function it is decorating.
@@ -25,8 +28,27 @@ def home():
 # POST: Used to send HTML form data to the server.
 # Add Post method to the decorator to allow for form submission. 
 # Redirect to /predict page with the output
-
 #----------------------------------------------------------
+# TESTING!
+@app.route('/predict',methods=['POST'])
+def predict():
+
+    output = teams['team'][0] # returns first team in column
+    output2 = teams['opposingTeam'] # returns all opposingTeam from that column
+    
+    userInput = []
+    for i in request.form.values():
+        userInput.append(i.upper())
+        
+    return render_template('index.html', prediction_text = userInput[0], test_text = userInput[1])
+
+    #return render_template('index.html', 
+    #                       prediction_text = 'The first team is: {}'.format(output), 
+    #                       test_text = ('The mathcup is: {}'.format(userInput[0]),'TEST MESSAGE'))
+    
+#----------------------------------------------------------
+# ORIGINAL!
+"""
 @app.route('/predict',methods=['POST'])
 def predict():
 
@@ -37,6 +59,7 @@ def predict():
     output = round(prediction[0], 2)
 
     return render_template('index.html', prediction_text='Percent with heart disease is {}'.format(output))
+"""
 
 #When the Python interpreter reads a source file, it first defines a few special variables. 
 #For now, we care about the __name__ variable.
@@ -45,6 +68,7 @@ def predict():
 #So if we want to run our code right here, we can check if __name__ == __main__
 #if so, execute it here. 
 #If we import this file (module) to another file then __name__ == app (which is the name of this python file).
+#-------------------------------------------------------------------------
 
 if __name__ == "__main__":
     app.run()

@@ -26,7 +26,7 @@ def fengine(df):
     df['month'] = pd.DatetimeIndex(df['gameDate']).month
     df['day'] = pd.DatetimeIndex(df['gameDate']).day
 
-    # Changing home_or_away column to be numerical
+    # Adding columns to be numerical
     le = preprocessing.LabelEncoder()
     df['home_or_away#'] = le.fit_transform(df['home_or_away'])
     df['team#'] = le.fit_transform(df['team'])

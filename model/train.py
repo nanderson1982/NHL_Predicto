@@ -36,4 +36,4 @@ def model(df):
     # Saving the model
     import pickle
     pickle.dump(lm, open('/Users/nathananderson/Desktop/NHL_Predictor/pickle/nhl.pkl', 'wb'))
-    print("** Model successfully save as a Pickle file.")
+    print("** Model successfully saved as a Pickle file.")
