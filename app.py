@@ -3,6 +3,8 @@ import numpy as np
 import pandas as pd
 from flask import Flask, request, render_template
 import pickle
+np.warnings.filterwarnings('ignore', category=np.VisibleDeprecationWarning)  
+
 
 # Create an app object using the Flask class
 app = Flask(__name__)
