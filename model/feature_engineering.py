@@ -28,9 +28,9 @@ def fengine(df):
 
     # Changing home_or_away column to be numerical
     le = preprocessing.LabelEncoder()
-    df['home_or_away'] = le.fit_transform(df['home_or_away'])
-    df['team'] = le.fit_transform(df['team'])
-    df['opposingTeam'] = le.fit_transform(df['opposingTeam'])
+    df['home_or_away#'] = le.fit_transform(df['home_or_away'])
+    df['team#'] = le.fit_transform(df['team'])
+    df['opposingTeam#'] = le.fit_transform(df['opposingTeam'])
 
     # Slicing the data
     df = df[df['situation'] == 'all']

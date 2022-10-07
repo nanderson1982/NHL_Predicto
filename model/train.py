@@ -8,7 +8,7 @@ def model(df):
     from sklearn.model_selection import train_test_split
     
     # New DataFrame for model
-    df = df[['team', 'opposingTeam', 'Win', 'home_or_away', 'year', 'month', 'day'
+    df = df[['team#', 'opposingTeam#', 'Win', 'home_or_away#', 'year', 'month', 'day'
                         , 'flurryScoreVenueAdjustedxGoalsFor', 'flurryScoreVenueAdjustedxGoalsAgainst']]
 
     X = df.drop(labels = "Win", axis = 1)
