@@ -33,15 +33,22 @@ def home():
 @app.route('/predict',methods=['POST'])
 def predict():
 
-    output = teams['team'][0] # returns first team in column
-    output2 = teams['opposingTeam'] # returns all opposingTeam from that column
-    
     userInput = []
     for i in request.form.values():
         userInput.append(i.upper())
         
-    return render_template('index.html', prediction_text = userInput[0], test_text = userInput[1])
+    #homeTeamNumber = teams.loc[teams['team'] == userInput[0], 'team#']
 
+    # THIS WORKS
+    #return render_template('index.html', prediction_text = userInput[0], test_text = userInput[1])
+
+    # THIS WORKS
+    pred = model.predict([[0, 22,5,5,5,5,5,5]]) ### Worked but I changed the features in the model above
+    return render_template('index.html', prediction_text = userInput[0], test_text = pred[0]) #use pred[0]
+
+    # NOT NEEDED BUT KEEP FOR REFERENCE
+    output = teams['team'][0] # returns first team in column
+    output2 = teams['opposingTeam'] # returns all opposingTeam from that column
     #return render_template('index.html', 
     #                       prediction_text = 'The first team is: {}'.format(output), 
     #                       test_text = ('The mathcup is: {}'.format(userInput[0]),'TEST MESSAGE'))
