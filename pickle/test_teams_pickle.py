@@ -8,5 +8,8 @@ list = ['JETS', 'OILERS']
 a = df2['team'][0]
 print(a)
 
-homeTeamNumber = df2.loc[df2['team'] == list[0], 'team#']
+h=list[0]
+a=list[1]
+
+homeTeamNumber = df2.query('team = h')['team#']
 print(homeTeamNumber)
