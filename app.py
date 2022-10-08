@@ -47,10 +47,16 @@ def predict():
     awayTeam = userInput[1]
     awayNum = teams[teams['opposingTeam'] == awayTeam]['opposingTeam#'].values[0]
 
-    # Making the prediction 
+    # Making the prediction
+    # Out put is Win(1) or Lose(0) for the Home Team 
     pred = model.predict([[homeNum, 
                            awayNum,
                            5,5,5,5,5,5]])
+    
+    # Probability of the two classes
+    predProb = model.predict_proba([[homeNum, 
+                                 awayNum,
+                                 5,5,5,5,5,5]])
     
     # Saving the Winner
     winner = []
@@ -61,9 +67,11 @@ def predict():
     
     # Returning info back to index,html
     #return render_template('index.html', prediction_text = userInput[0], test_text = pred[0]) 
+        
     return render_template('index.html', 
-                           prediction_text = ('The winner is:', winner), 
-                           test_text = pred[0],
+                           hTeam = 'Home Team: {}'.format(homeTeam),
+                           aTeam = 'Away Team: {}'.format(awayTeam),
+                           winTeam = 'Winner: {}'.format(winner),
                            input_length = homeTeam)
     
 #-------------------------------------------------------------------------

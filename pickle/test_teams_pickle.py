@@ -23,10 +23,10 @@ away_num = df2[df2['opposingTeam'] == a]['opposingTeam#'].values[0]
 print('home team number:', home_num)
 
 # Making predictions
-pred = model.predict([[home_num, away_num,5,5,5,5,5,5]]) ### Worked but I changed the features in the model above
+pred = model.predict([[home_num, away_num,5,5,5,5,5,5]]) 
 print('The predicted class:', pred[0])
 
-prob = model.predict_proba([[home_num, away_num,5,5,5,5,5,5]]) ### Worked but I changed the features in the model above
+prob = model.predict_proba([[home_num, away_num,5,5,5,5,5,5]])
 # class 0 probability
 print(prob[0][0])
 
