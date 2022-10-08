@@ -4,23 +4,27 @@ import pickle
 
 np.warnings.filterwarnings('ignore', category=np.VisibleDeprecationWarning)  
 
-# read pickle file as dataframe
+# Read teams pickle file as dataframe
 df2 = pd.read_pickle('/Users/nathananderson/Desktop/NHL_Predictor/pickle/teams.pkl')
-# print the dataframe
 #print(df2)
-list = ['WPG', 'EDM']
-nlist = (','.join(str(a)for a in list))
 
-h = list[0]
-a = list[1]
-
-home_num = df2[df2['team'] == h]['team#']
-away_num = df2[df2['opposingTeam'] == a]['opposingTeam#']
-
+# Read ML model pickfile 
 model = pickle.load(open('/Users/nathananderson/Desktop/NHL_Predictor/pickle/nhl.pkl', 'rb'))
 
+# Team variables for testing
+list = ['WPG', 'EDM']
+
+h = list[1]
+a = list[0]
+
+# Find the corresponding team number -> needed for prediction
+home_num = df2[df2['team'] == h]['team#'].values[0]
+away_num = df2[df2['opposingTeam'] == a]['opposingTeam#'].values[0]
+print('home team number:', home_num)
+
+# Making predictions
 pred = model.predict([[home_num, away_num,5,5,5,5,5,5]]) ### Worked but I changed the features in the model above
-print('The number is:', pred)
+print('The predicted class:', pred[0])
 
 prob = model.predict_proba([[home_num, away_num,5,5,5,5,5,5]]) ### Worked but I changed the features in the model above
 # class 0 probability
