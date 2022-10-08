@@ -30,7 +30,8 @@ def home():
 # POST: Used to send HTML form data to the server.
 # Add Post method to the decorator to allow for form submission. 
 # Redirect to /predict page with the output
-#----------------------------------------------------------
+
+#-------------------------------------------------------------------------
 # TESTING!
 @app.route('/predict',methods=['POST'])
 def predict():
@@ -40,9 +41,6 @@ def predict():
         userInput.append(i.upper())
         
     #homeTeamNumber = teams.loc[teams['team'] == userInput[0], 'team#']
-
-    # THIS WORKS
-    #return render_template('index.html', prediction_text = userInput[0], test_text = userInput[1])
 
     # THIS WORKS
     pred = model.predict([[0, 22,5,5,5,5,5,5]]) ### Worked but I changed the features in the model above
@@ -55,7 +53,7 @@ def predict():
     #                       prediction_text = 'The first team is: {}'.format(output), 
     #                       test_text = ('The mathcup is: {}'.format(userInput[0]),'TEST MESSAGE'))
     
-#----------------------------------------------------------
+#-------------------------------------------------------------------------
 # ORIGINAL!
 """
 @app.route('/predict',methods=['POST'])

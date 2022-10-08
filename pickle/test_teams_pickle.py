@@ -9,6 +9,7 @@ df2 = pd.read_pickle('/Users/nathananderson/Desktop/NHL_Predictor/pickle/teams.p
 # print the dataframe
 #print(df2)
 list = ['WPG', 'EDM']
+nlist = (','.join(str(a)for a in list))
 
 h = list[0]
 a = list[1]
@@ -19,7 +20,7 @@ away_num = df2[df2['opposingTeam'] == a]['opposingTeam#']
 model = pickle.load(open('/Users/nathananderson/Desktop/NHL_Predictor/pickle/nhl.pkl', 'rb'))
 
 pred = model.predict([[home_num, away_num,5,5,5,5,5,5]]) ### Worked but I changed the features in the model above
-print(pred)
+print('The number is:', pred)
 
 prob = model.predict_proba([[home_num, away_num,5,5,5,5,5,5]]) ### Worked but I changed the features in the model above
 # class 0 probability
