@@ -4,7 +4,7 @@ import pandas as pd
 from flask import Flask, request, render_template
 import pickle
 np.warnings.filterwarnings('ignore', category=np.VisibleDeprecationWarning)  
-
+from datetime import datetime
 
 # Create an app object using the Flask class
 app = Flask(__name__)
@@ -35,6 +35,8 @@ def home():
 def predict():
 
     # Capturing user input for 'team' and 'opposingTeam' from index.html
+    homeTeamInput = request.form['Home Team'] # Alternate & more effective way to capture user input from html
+    
     userInput = []
     for i in request.form.values():
         userInput.append(i.upper())
@@ -47,32 +49,51 @@ def predict():
     awayTeam = userInput[1]
     awayNum = teams[teams['opposingTeam'] == awayTeam]['opposingTeam#'].values[0]
 
+    # Variable to be used for prediction
+    currentDay = datetime.now().day
+    currentMonth = datetime.now().month
+    currentYear = datetime.now().year
+    home_or_away = 1
+
     # Making the prediction
     # Out put is Win(1) or Lose(0) for the Home Team 
     pred = model.predict([[homeNum, 
                            awayNum,
-                           5,5,5,5,5,5]])
+                           home_or_away,
+                           currentYear, 
+                           currentMonth,
+                           currentDay, 
+                           5,4]])
     
     # Probability of the two classes
     predProb = model.predict_proba([[homeNum, 
                                  awayNum,
-                                 5,5,5,5,5,5]])
+                                 home_or_away,
+                                 currentYear, 
+                                 currentMonth,
+                                 currentDay, 
+                                 5,
+                                 4]])
     
-    # Saving the Winner
+    # Saving the Winner and Probability
     winner = []
+    winnerProb = []
+    
     if pred[0] == 1:
         winner = userInput[0]
+        winnerProb = predProb[0][1]
     else:
-        winner = userInput[1] 
+        winner = userInput[1]
+        winnerProb = predProb[0][0]
     
     # Returning info back to index,html
     #return render_template('index.html', prediction_text = userInput[0], test_text = pred[0]) 
-        
     return render_template('index.html', 
                            hTeam = 'Home Team: {}'.format(homeTeam),
                            aTeam = 'Away Team: {}'.format(awayTeam),
-                           winTeam = 'Winner: {}'.format(winner),
-                           input_length = homeTeam)
+                           winTeam = 'Predicted Winner: {}'.format(winner),
+                           winProb = 'Predicted Probability: {}'.format(winnerProb))
+                        
     
 #-------------------------------------------------------------------------
 
