@@ -34,7 +34,7 @@ def fengine(df):
 
     # Slicing the data
     df = df[df['situation'] == 'all']
-    df = df[df['season'] >= 2019]
+    df = df[df['season'] >= 2018]
     df = df[df['playoffGame'] == 0]
     df = df[df['Shootout Game'] == 0]
 

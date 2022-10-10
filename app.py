@@ -59,21 +59,23 @@ def predict():
     # Out put is Win(1) or Lose(0) for the Home Team 
     pred = model.predict([[homeNum, 
                            awayNum,
-                           home_or_away,
                            currentYear, 
                            currentMonth,
                            currentDay, 
-                           5,4]])
+                           3.5,4]])
     
     # Probability of the two classes
     predProb = model.predict_proba([[homeNum, 
                                  awayNum,
-                                 home_or_away,
                                  currentYear, 
                                  currentMonth,
                                  currentDay, 
-                                 5,
+                                 3.5,
                                  4]])
+    
+    predProbClass1 = (f"{round((predProb[0][1]) * 100, 2)}%")
+    predProbClass0 = (f"{round((predProb[0][0]) * 100, 2)}%")
+
     
     # Saving the Winner and Probability
     winner = []
@@ -81,10 +83,10 @@ def predict():
     
     if pred[0] == 1:
         winner = userInput[0]
-        winnerProb = predProb[0][1]
+        winnerProb = predProbClass1
     else:
         winner = userInput[1]
-        winnerProb = predProb[0][0]
+        winnerProb = predProbClass0
     
     # Returning info back to index,html
     #return render_template('index.html', prediction_text = userInput[0], test_text = pred[0]) 
