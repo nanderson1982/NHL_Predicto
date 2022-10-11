@@ -75,7 +75,6 @@ def predict():
     
     predProbClass1 = (f"{round((predProb[0][1]) * 100, 2)}%")
     predProbClass0 = (f"{round((predProb[0][0]) * 100, 2)}%")
-
     
     # Saving the Winner and Probability
     winner = []
@@ -96,11 +95,7 @@ def predict():
                            winTeam = 'Predicted Winner: {}'.format(winner),
                            winProb = 'Predicted Probability: {}'.format(winnerProb))
                         
-    
 #-------------------------------------------------------------------------
-
-#    features = [np.array(int_features)]  #Convert to the form [[a, b]] for input to the model
-#    prediction = model.predict(features)  # features Must be in the form [[a, b]]
 
 #When the Python interpreter reads a source file, it first defines a few special variables. 
 #For now, we care about the __name__ variable.

@@ -4,3 +4,4 @@ pandas==0.25.1
 datetime==4.7
 scikit-learn==0.21.3
 scipy==1.4.1
+gunicorn
