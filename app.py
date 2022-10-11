@@ -58,19 +58,19 @@ def predict():
     # Making the prediction
     # Out put is Win(1) or Lose(0) for the Home Team 
     pred = model.predict([[homeNum, 
-                           awayNum,
+                           awayNum, 1,
                            currentYear, 
                            currentMonth,
                            currentDay, 
-                           3.5,4]])
+                           4.1,4]])
     
     # Probability of the two classes
     predProb = model.predict_proba([[homeNum, 
-                                 awayNum,
+                                 awayNum, 1,
                                  currentYear, 
                                  currentMonth,
                                  currentDay, 
-                                 3.5,
+                                 4.1,
                                  4]])
     
     predProbClass1 = (f"{round((predProb[0][1]) * 100, 2)}%")

@@ -8,13 +8,13 @@ def model(df):
     from sklearn.model_selection import train_test_split
     
     # New DataFrame for model
-    df = df[['team#', 'opposingTeam#', 'Win', 'year', 'month', 'day'
-                        , 'corsiPercentage', 'fenwickPercentage']]
+    df = df[['team#', 'opposingTeam#', 'home_or_away#', 'Win', 'year', 'month', 'day', 'flurryScoreVenueAdjustedxGoalsFor','flurryScoreVenueAdjustedxGoalsAgainst']]
+    # 'corsiPercentage', 'fenwickPercentage'
 
     X = df.drop(labels = "Win", axis = 1)
     y = df["Win"]
 
-    X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.4, random_state=10)
+    X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.4, random_state=100)
 
     # Train a LinearRegression model
     from sklearn.linear_model import LogisticRegression

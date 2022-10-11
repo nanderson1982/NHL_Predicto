@@ -26,6 +26,7 @@ print("** Feature Engineering has been successfully completed.")
 # Training the Logistic Classifier and saving the Pickle file
 print("** Training the ML model.")
 tr.model(df)
+print("Model has been trained.")
 
 # Display all steps complete
 print("** All processes complete.")
