@@ -19,10 +19,11 @@ df = fe.fengine(cleanData)
 print("** Feature Engineering has been successfully completed.")
 
 # Creating team DataFrame
-teamsData = df[['team', 'team#', 'opposingTeam', 'opposingTeam#', 'home_or_away', 'home_or_away#']].copy()
+teamsData = df[['team', 'team#', 'opposingTeam', 'opposingTeam#']].copy()
 teamsData = teamsData.drop_duplicates(subset= 'team#', keep= 'first')
 teamsData = teamsData.sort_values('team#').reset_index(drop = True)
 print("** DataFrame created.")
 
 # Creating pickle of teamsData DataFrame - save file
 teamsData.to_pickle('/Users/nathananderson/Desktop/NHL_Predictor/pickle/teams.pkl')
+print('DataFrame saved to Pickle file.')
