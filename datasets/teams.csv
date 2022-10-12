@@ -1,33 +1,33 @@
-﻿Full Team Name,City Name,Team Name
-Anaheim Ducks,Anaheim,Ducks
-Arizona Coyotes,Arizona,Coyotes
-Boston Bruins,Boston,Bruins
-Buffalo Sabres,Buffalo,Sabres
-Calgary Flames,Calgary,Flames
-Carolina Hurricanes,Carolina,Hurricanes
-Chicago Blackhawks,Chicago,Blackhawks
-Colorado Avalanche,Colorado,Avalanche
-Columbus Blue Jackets,Columbus,Blue Jackets
-Dallas Stars,Dallas,Stars
-Detroit Red Wings,Detroit,Red Wings
-Edmonton Oilers,Edmonton,Oilers
-Florida Panthers,Florida,Panthers
-Los Angeles Kings,Los Angeles,Kings
-Minnesota Wild,Minnesota,Wild
-Montreal Canadiens,Montreal,Canadiens
-Nashville Predators,Nashville,Predators
-New Jersey Devils,New Jersey,Devils
-New York Islanders,New York,Islanders
-New York Rangers,New York,Rangers
-Ottawa Senators,Ottawa,Senators
-Philadelphia Flyers,Philadelphia,Flyers
-Pittsburgh Penguins,Pittsburgh,Penguins
-San Jose Sharks,San Jose,Sharks
-Seattle Kraken,Seattle,Kraken
-St. Louis Blues,St. Louis,Blues
-Tampa Bay Lightning,Tampa Bay,Lightning
-Toronto Maple Leafs,Toronto,Maple Leafs
-Vancouver Canucks,Vancouver,Canucks
-Vegas Golden Knights,Vegas,Golden Knights
-Washington Capitals,Washington,Capitals
-Winnipeg Jets,Winnipeg,Jets
+﻿Full Team Name,City Name,Team Name,abbreviation
+Anaheim Ducks,Anaheim,Ducks,ANA
+Arizona Coyotes,Arizona,Coyotes,ARI
+Boston Bruins,Boston,Bruins,BOS
+Buffalo Sabres,Buffalo,Sabres,BUF
+Calgary Flames,Calgary,Flames,CGY
+Carolina Hurricanes,Carolina,Hurricanes,CAR
+Chicago Blackhawks,Chicago,Blackhawks,CHI
+Colorado Avalanche,Colorado,Avalanche,COL
+Columbus Blue Jackets,Columbus,Blue Jackets,CBL
+Dallas Stars,Dallas,Stars,DAL
+Detroit Red Wings,Detroit,Red Wings,DET
+Edmonton Oilers,Edmonton,Oilers,EDM
+Florida Panthers,Florida,Panthers,FLA
+Los Angeles Kings,Los Angeles,Kings,LAK
+Minnesota Wild,Minnesota,Wild,MIN
+Montreal Canadiens,Montreal,Canadiens,MTL
+Nashville Predators,Nashville,Predators,NSH
+New Jersey Devils,New Jersey,Devils,NJD
+New York Islanders,New York,Islanders,NYI
+New York Rangers,New York,Rangers,NYR
+Ottawa Senators,Ottawa,Senators,OTT
+Philadelphia Flyers,Philadelphia,Flyers,PHI
+Pittsburgh Penguins,Pittsburgh,Penguins,PIT
+San Jose Sharks,San Jose,Sharks,SJS
+Seattle Kraken,Seattle,Kraken,SEA
+St. Louis Blues,St. Louis,Blues,STL
+Tampa Bay Lightning,Tampa Bay,Lightning,TBL
+Toronto Maple Leafs,Toronto,Maple Leafs,TOR
+Vancouver Canucks,Vancouver,Canucks,VAN
+Vegas Golden Knights,Vegas,Golden Knights,VGK
+Washington Capitals,Washington,Capitals,WPG
+Winnipeg Jets,Winnipeg,Jets,WSH
