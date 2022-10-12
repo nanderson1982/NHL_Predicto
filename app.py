@@ -10,9 +10,11 @@ from datetime import datetime
 app = Flask(__name__)
 
 # Load the trained model - Pickle File
-model = pickle.load(open('/Users/nathananderson/Desktop/NHL_Predictor/pickle/nhl.pkl', 'rb'))
+#model = pickle.load(open('/Users/nathananderson/Desktop/NHL_Predictor/pickle/nhl.pkl', 'rb'))
+model = pickle.load(open('pickle/nhl.pkl', 'rb'))
 
-teams = pd.read_pickle('/Users/nathananderson/Desktop/NHL_Predictor/pickle/teams.pkl')
+#teams = pd.read_pickle('/Users/nathananderson/Desktop/NHL_Predictor/pickle/teams.pkl')
+teams = pickle.load(open('pickle/teams.pkl'))
                         
 # Define the route to be home. Here, home function is with '/', our root directory. 
 # The decorator below links the relative route of the URL to the function it is decorating.
