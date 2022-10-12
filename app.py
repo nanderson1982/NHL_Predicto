@@ -14,7 +14,7 @@ app = Flask(__name__)
 model = pickle.load(open('pickle/nhl.pkl', 'rb'))
 
 #teams = pd.read_pickle('/Users/nathananderson/Desktop/NHL_Predictor/pickle/teams.pkl')
-teams = pickle.load(open('pickle/teams.pkl' 'rb'))
+teams = pickle.load(open('pickle/teams.pkl', 'rb'))
                         
 # Define the route to be home. Here, home function is with '/', our root directory. 
 # The decorator below links the relative route of the URL to the function it is decorating.
