@@ -3,6 +3,9 @@ import api
 import data_cleaning as dc
 import feature_engineering as fe
 import train as tr
+from sklearn import preprocessing
+import pandas as pd
+import numpy as np
 
 # Importing the most recent data
 url = 'https://moneypuck.com/moneypuck/playerData/careers/gameByGame/all_teams.csv'
@@ -17,6 +20,7 @@ print("** The raw data has been successfully cleaned.")
 df = fe.fengine(cleanData)
 print("** Feature Engineering has been successfully completed.")
 
+# Filtering DataFrame for metric columns only
 filtered = df[['team',
  'home_or_away',
  'xGoalsPercentage',
@@ -120,20 +124,121 @@ filtered = df[['team',
  'scoreAdjustedTotalShotCreditAgainst',
  'scoreFlurryAdjustedTotalShotCreditAgainst']]
 
-# Saving the label columns
-labelsdf = filtered[['team', 'home_or_away']]
-
-# Dropping the label columns
-filtered = filtered.drop(labels = ["team", "home_or_away"], axis = 1)
-
-# Saving column headers
-column_headers = filtered.columns.values.tolist()
+# List of column names to normalize
+cols_to_normalize =  ['xGoalsPercentage',
+ 'corsiPercentage',
+ 'fenwickPercentage',
+ 'iceTime',
+ 'xOnGoalFor',
+ 'xGoalsFor',
+ 'xReboundsFor',
+ 'xFreezeFor',
+ 'xPlayStoppedFor',
+ 'xPlayContinuedInZoneFor',
+ 'xPlayContinuedOutsideZoneFor',
+ 'flurryAdjustedxGoalsFor',
+ 'scoreVenueAdjustedxGoalsFor',
+ 'flurryScoreVenueAdjustedxGoalsFor',
+ 'shotsOnGoalFor',
+ 'missedShotsFor',
+ 'blockedShotAttemptsFor',
+ 'shotAttemptsFor',
+ 'goalsFor',
+ 'reboundsFor',
+ 'reboundGoalsFor',
+ 'freezeFor',
+ 'playStoppedFor',
+ 'playContinuedInZoneFor',
+ 'playContinuedOutsideZoneFor',
+ 'savedShotsOnGoalFor',
+ 'savedUnblockedShotAttemptsFor',
+ 'penaltiesFor',
+ 'penalityMinutesFor',
+ 'faceOffsWonFor',
+ 'hitsFor',
+ 'takeawaysFor',
+ 'giveawaysFor',
+ 'lowDangerShotsFor',
+ 'mediumDangerShotsFor',
+ 'highDangerShotsFor',
+ 'lowDangerxGoalsFor',
+ 'mediumDangerxGoalsFor',
+ 'highDangerxGoalsFor',
+ 'lowDangerGoalsFor',
+ 'mediumDangerGoalsFor',
+ 'highDangerGoalsFor',
+ 'scoreAdjustedShotsAttemptsFor',
+ 'unblockedShotAttemptsFor',
+ 'scoreAdjustedUnblockedShotAttemptsFor',
+ 'dZoneGiveawaysFor',
+ 'xGoalsFromxReboundsOfShotsFor',
+ 'xGoalsFromActualReboundsOfShotsFor',
+ 'reboundxGoalsFor',
+ 'totalShotCreditFor',
+ 'scoreAdjustedTotalShotCreditFor',
+ 'scoreFlurryAdjustedTotalShotCreditFor',
+ 'xOnGoalAgainst',
+ 'xGoalsAgainst',
+ 'xReboundsAgainst',
+ 'xFreezeAgainst',
+ 'xPlayStoppedAgainst',
+ 'xPlayContinuedInZoneAgainst',
+ 'xPlayContinuedOutsideZoneAgainst',
+ 'flurryAdjustedxGoalsAgainst',
+ 'scoreVenueAdjustedxGoalsAgainst',
+ 'flurryScoreVenueAdjustedxGoalsAgainst',
+ 'shotsOnGoalAgainst',
+ 'missedShotsAgainst',
+ 'blockedShotAttemptsAgainst',
+ 'shotAttemptsAgainst',
+ 'goalsAgainst',
+ 'reboundsAgainst',
+ 'reboundGoalsAgainst',
+ 'freezeAgainst',
+ 'playStoppedAgainst',
+ 'playContinuedInZoneAgainst',
+ 'playContinuedOutsideZoneAgainst',
+ 'savedShotsOnGoalAgainst',
+ 'savedUnblockedShotAttemptsAgainst',
+ 'penaltiesAgainst',
+ 'penalityMinutesAgainst',
+ 'faceOffsWonAgainst',
+ 'hitsAgainst',
+ 'takeawaysAgainst',
+ 'giveawaysAgainst',
+ 'lowDangerShotsAgainst',
+ 'mediumDangerShotsAgainst',
+ 'highDangerShotsAgainst',
+ 'lowDangerxGoalsAgainst',
+ 'mediumDangerxGoalsAgainst',
+ 'highDangerxGoalsAgainst',
+ 'lowDangerGoalsAgainst',
+ 'mediumDangerGoalsAgainst',
+ 'highDangerGoalsAgainst',
+ 'scoreAdjustedShotsAttemptsAgainst',
+ 'unblockedShotAttemptsAgainst',
+ 'scoreAdjustedUnblockedShotAttemptsAgainst',
+ 'dZoneGiveawaysAgainst',
+ 'xGoalsFromxReboundsOfShotsAgainst',
+ 'xGoalsFromActualReboundsOfShotsAgainst',
+ 'reboundxGoalsAgainst',
+ 'totalShotCreditAgainst',
+ 'scoreAdjustedTotalShotCreditAgainst',
+ 'scoreFlurryAdjustedTotalShotCreditAgainst']
 
 # Normalizing the data
-import pandas as pd
-from sklearn import preprocessing
-
-#normalized = normalized.values #returns a numpy array
 min_max_scaler = preprocessing.MinMaxScaler()
-x_scaled = min_max_scaler.fit_transform(filtered)
-normalized_df = pd.DataFrame(x_scaled, columns= column_headers)
+filtered[cols_to_normalize] = min_max_scaler.fit_transform(filtered[cols_to_normalize])
+
+# Grouping the data and finding the mean
+grouped = filtered.groupby(['team', 'home_or_away']).mean()
+
+# Unpivot 1st level
+grouped.reset_index(level=1, inplace=True)
+
+# Unpivot 2nd level
+grouped.reset_index(level=0, inplace=True)
+
+# Creating pickle of teams_metrics DataFrame - save file
+grouped.to_pickle('/Users/nathananderson/Desktop/NHL_Predictor/pickle/team_metrics.pkl')
+print('** DataFrame saved to Pickle file.')

@@ -32,17 +32,19 @@ def home():
 # Add Post method to the decorator to allow for form submission. 
 # Redirect to /predict page with the output
 
-#-------------------------------------------------------------------------
+#----------------------------------------------------------------------------------------
 @app.route('/predict', methods = ['POST'])
 def predict():
 
-    # Capturing user input for 'team' and 'opposingTeam' from index.html
-    homeTeamInput = request.form['Home Team'] # Alternate & more effective way to capture user input from html
+    # --- Capturing user input for 'team' and 'opposingTeam' from index.html ------------
+    # Alternate & more effective way to capture user input from html
+    homeTeamInput = request.form['Home Team'] 
     
     userInput = []
     for i in request.form.values():
         userInput.append(i.upper())
-        
+    
+    # ----------------------- Home / Away Team Lookup from teams.pkl --------------------    
     # Home team user input
     homeTeam = userInput[0]    
     homeNum = teams[teams['team'] == userInput[0]]['team#'].values[0]
@@ -51,13 +53,12 @@ def predict():
     awayTeam = userInput[1]
     awayNum = teams[teams['opposingTeam'] == awayTeam]['opposingTeam#'].values[0]
 
-    # Variable to be used for prediction
+    # ----------------------- Date variables to be used for prediction ------------------
     currentDay = datetime.now().day
     currentMonth = datetime.now().month
     currentYear = datetime.now().year
-    home_or_away = 1
 
-    # Making the prediction
+    # --------------------------------- Making the prediction ---------------------------
     # Out put is Win(1) or Lose(0) for the Home Team 
     pred = model.predict([[homeNum, 
                            awayNum, 1,
@@ -89,14 +90,14 @@ def predict():
         winner = userInput[1]
         winnerProb = predProbClass0
     
-    # Returning info back to index,html
+    # ----------------------- Returning info back to index,html -------------------------
     #return render_template('index.html', prediction_text = userInput[0], test_text = pred[0]) 
     return render_template('index.html', 
                            hTeam = 'Home Team: {}'.format(homeTeam),
                            aTeam = 'Away Team: {}'.format(awayTeam),
                            winTeam = 'Predicted Winner: {}'.format(winner),
                            winProb = 'Predicted Probability: {}'.format(winnerProb))
-                        
+
 #-------------------------------------------------------------------------
 
 #When the Python interpreter reads a source file, it first defines a few special variables. 
