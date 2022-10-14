@@ -79,7 +79,7 @@ def predict():
     predProbClass1 = (f"{round((predProb[0][1]) * 100, 2)}%")
     predProbClass0 = (f"{round((predProb[0][0]) * 100, 2)}%")
     
-    # Saving the Winner and Probability
+    # ------------------ Saving the Prediction and Probability --------------------------
     winner = []
     winnerProb = []
     
