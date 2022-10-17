@@ -37,5 +37,6 @@ def fengine(df):
     df = df[df['season'] >= 2018]
     df = df[df['playoffGame'] == 0]
     df = df[df['Shootout Game'] == 0]
+    df = df[df['OT Game'] == 0]
 
     return df
