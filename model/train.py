@@ -14,7 +14,7 @@ def model(df):
     X = df.drop(labels = "Win", axis = 1)
     y = df["Win"]
 
-    X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.4, random_state=100)
+    X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.2, random_state=100)
 
     # Train a LinearRegression model
     from sklearn.linear_model import LogisticRegression
