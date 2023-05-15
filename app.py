@@ -90,7 +90,7 @@ def predict():
         winner = userInput[1]
         winnerProb = predProbClass0
     
-    # ----------------------- Returning info back to index,html -------------------------
+    # ----------------------- Returning info back to index.html -------------------------
     #return render_template('index.html', prediction_text = userInput[0], test_text = pred[0]) 
     return render_template('index.html', 
                            hTeam = 'Home Team: {}'.format(homeTeam),
